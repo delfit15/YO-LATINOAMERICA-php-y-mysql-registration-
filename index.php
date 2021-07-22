@@ -6,9 +6,19 @@
     include('conexion_db.php'); //incluyo ingreso a base de datos
     
     ?>
-    <p> <a href="acceso_main.php">Iniciar Sesión</a>  |  <a href="registro.php">Registrarse</a> | <a href="que_es.php">¿Qué es?</a></p>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html" />
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>YO,LATINOAMERICA</title>
+	   <script src="processing/p5.js"></script>
+  <script src="processing/sketch_p5.js"></script>  
+</head>  
 
+  <aside> <nav><a href="acceso_main.php">Iniciar Sesión</a>  |  <a href="registro.php">Registrarse</a> | <a href="que_es.php">¿Qué es?</a></nav></aside>
+</html>
 
 
 
