@@ -1,43 +1,35 @@
+color fillColor;
 
-// caracteristicas brushes
-let hue,sat,bright;
-let hueWidth, hueHeight;
-let brushsizeX, brushsizeX2, brushsizeY;
-let fillColor;
-let grosor;
+float hue;
+float sat;
+float bright;
+float hueWidth;
+float hueHeight;
+float brushsizeX,brushsizeX2, brushsizeY;
+float grosor;
 
-let stroke1, stroke2, lapiz, lata, paintbrush; //imagenes
-let dibujo; // dibujo final 
+PImage stroke1, stroke2, lapiz, lata, paintbrush;
+PImage dibujo; // dibujo final 
 
-// tipos de brushes
-let pencil;
-let pincel;
-let aerosol;
+boolean pencil=true;
+boolean pincel=false;
+boolean aerosol=false;
 
-function preload() {
-  stroke1=loadImage("data/brush.png");
-  stroke2=loadImage("data/aerosol.png");
-  lapiz=loadImage("data/pencil.png");
-  paintbrush=loadImage("data/paintbrush.png");
-  lata=loadImage("data/lata.png");
-}
 
-function setup ()
+void setup ()
 {
   //brushes
   imageMode(CENTER);
+
+  stroke1=loadImage("brush.png");
+  stroke2=loadImage("aerosol.png");
+  lapiz=loadImage("pencil.png");
+  paintbrush=loadImage("paintbrush.png");
+  lata=loadImage("lata.png");
+
   pencil=true;
-  pincel=false;
-  aerosol=false;
 
- createCanvas(980, 720, P2D);
- let canvas = document.getElementById("defaultCanvas0");
- context = canvas.getContext('2d');
- document.getElementById("snap").addEventListener("click", function() {
- context.drawImage(canvas, 50, 50, 800,800,50,0,720, 1080 );
-});
- 
-
+  size(980, 720, P2D);
   background(255);
   colorMode(HSB);
   smooth();
@@ -55,31 +47,29 @@ function setup ()
    brushsizeX2=80;
    brushsizeY=170;
 
- 
-
 };
 
-function draw () 
+void draw () 
 { 
   
    // barra inferior
-  push();     
+  pushStyle();     
   //strokeWeight (2);
   noStroke(); 
   fill (0, 3, 210);
   rect (0, 620, width, 100);
-  pop();
+  popStyle();
 
   // iconos
-  push();
+  pushStyle();
   tint (0);
   image(lapiz, 400, 670, 50, 50);
   image(paintbrush, 500, 670, 50, 50);
   image(lata, 600, 670, 50, 50);
-  pop();
+  popStyle();
 
   //grosor pincel iconos
-  push();
+  pushStyle();
   stroke(0); 
   strokeWeight (20);
   line (20, 700, 80, 700);
@@ -87,7 +77,7 @@ function draw ()
   line (20, 670, 80, 670);
   strokeWeight(5);
   line (20, 640, 80, 640);
-  pop();
+  popStyle();
 
 
   // color blanco (goma) y negro cuadrados
@@ -113,9 +103,11 @@ function draw ()
 
   //////////// empiezo a dibujar al presionar el mouse
 
-  if (mouseIsPressed===true) 
+  if (mousePressed==true) 
   {
  
+  
+
     if (mouseY < hueHeight) { // agarro colores
       hue = map(mouseX, 0, width, 0, 255);
       fillColor = color(hue, sat, bright);
@@ -145,18 +137,18 @@ function draw ()
     
   
     else if (mouseX > 140 && mouseY>645 && mouseX< 140+50 && mouseY<645+50) { // blanco
-      push();
+      pushStyle();
       fillColor= 255;
       stroke (fillColor);
       //  line(mouseX, mouseY, pmouseX,pmouseY);
-      pop();
+      popStyle();
       
     } else if (mouseX > 210 && mouseY>645 && mouseX< 210+50 && mouseY<645+50) {//negro
-      push();
+      pushStyle();
       fillColor=0;
       stroke (fillColor);
       // line(mouseX, mouseY, pmouseX,pmouseY);
-      pop();
+      popStyle();
       
     } 
       
@@ -164,43 +156,45 @@ function draw ()
       aerosol=false;
       pincel=true;
       pencil=false;
-    } 
-    
-    else if (mouseX > 600 && mouseY>620 && mouseX< 600+40 && mouseY<620+70) {//aerosol
+    } else if (mouseX > 600 && mouseY>620 && mouseX< 600+40 && mouseY<620+70) {//aerosol
       aerosol=true;
       pincel=false;
       pencil=false;
-    } 
-    
-    else if (mouseX > 350 && mouseY>620 && mouseX< 400+40 && mouseY<620+70) {//pencil
+    } else if (mouseX > 350 && mouseY>620 && mouseX< 400+40 && mouseY<620+70) {//pencil
       aerosol=false;
       pincel=false;
       pencil=true;
     }
     
+    
     // al apretar el botón de enviar, se guarda la imagen en carpeta, lista para ser recogida por la basededatos. 
-    // else if (mouseX > 750 && mouseY>645 && mouseX< 750+190 && mouseY<645+53) {
-   
-      //}
+     else if (mouseX > 750 && mouseY>645 && mouseX< 750+190 && mouseY<645+53) {//pencil
+         dibujo=get(0, 30, width,590);
+        dibujo.save("dibujos/dibujo.png");
+        
+      }
       
     }
   
   }
 
 
-function drawHueBar() {
-  for (let i=0; i<width; i++) {
-    let hue = map(i, 0, width, 0, 255);// declare local variable hue  
+
+
+void drawHueBar() {
+  for (int i=0; i<width; i++) {
+    float hue = map(i, 0, width, 0, 255);// declare local variable hue  
     stroke(hue, sat, bright);   
 
-    push();
+    pushStyle();
     strokeWeight (20);
     rect(i, 0, i, hueHeight);
-    pop();
+    popStyle();
   }
 }
 
-function mouseDragged() {
+
+void mouseDragged() {
    if (pencil==true) {
      strokeWeight(grosor);
     stroke(fillColor);
@@ -210,21 +204,21 @@ function mouseDragged() {
   if (pincel==true) {
     pencil=false;
     tint (fillColor, 20);
-    push();
+    pushMatrix();
     translate (mouseX, mouseY);
     // rotate (radians(random(0)));
     image(stroke1, 0, 0,  brushsizeX,  brushsizeX2);
-    pop();
+    popMatrix();
   }
 
   if (aerosol==true) {
     pencil=false;
     tint (fillColor, 40);
-    push();
+    pushMatrix();
     translate (mouseX, mouseY);
     // rotate (radians(random(10)));
     image(stroke2, 0, 0,  brushsizeX,  brushsizeX);
-    pop();
- 
+    popMatrix();
+    
   }
 }

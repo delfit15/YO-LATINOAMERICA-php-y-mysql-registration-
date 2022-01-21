@@ -7,10 +7,11 @@
     include('conexion_db.php'); // incluímos los datos de acceso a la BD 
 // comprobamos que se haya iniciado la sesión, o sea que un usuario autorizado haya iniciado sesión
 if(isset($_SESSION['usuario_usuario'])) {
-    	
+       
+
 ?>
 
- <a href="restringida_paint.php">Soy, Soy lo que dejaron, soy toda la sobra de lo que se robaron.</a>; 
+ <a href="backup.php">Soy, Soy lo que dejaron, soy toda la sobra de lo que se robaron.</a>; 
  <a href="restringida_paint.php">Un pueblo escondido en la cima, mi piel es de cuero por eso aguanta cualquier clima.</a>; 
  <a href="restringida_paint.php">Soy una fábrica de humo,mano de obra campesina para tu consumo.</a>; 
  <a href="restringida_paint.php">Frente de frio en el medio del verano, el amor en los tiempos del cólera, mi hermano.</a>; 

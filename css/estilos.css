@@ -1,18 +1,32 @@
 
 
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+#defaultCanvas0{
+overflow: hidden;
+}
+
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
 
 body {
- background-image: url('https://img.culturacolectiva.com/cdn-cgi/image/f=auto,w=1600,q=80,fit=contain/featured_image/2018/05/21/1526936229560/las-pinturas-latinoamericanas-mas-caras-de-la-historia.jpg');
+ background-color: whitesmoke;
 
 }
 
 .card-signin {
   border: 0;
-  border-radius: 1rem;
+  border-radius: 7rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   
 }

@@ -35,7 +35,6 @@
 				// ingresamos los datos a la BD
                 
                 $reg = "INSERT INTO usuarios (usuario, nombre, apellido, clave, imagen,bio, reg_date) VALUES ('".$usuario_usuario."','" .$usuario_nombre."','" .$usuario_apellido."', '".$usuario_clave."','imagen_default.jpg', 'sin biografía', NOW())";
-                
                 if($conn->query($reg) === TRUE)
 					{ 
 						echo "Datos ingresados correctamente. Ahora puedes loguearte.";
