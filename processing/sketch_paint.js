@@ -31,11 +31,6 @@ function setup ()
   aerosol=false;
 
  createCanvas(980, 720, P2D);
- let canvas = document.getElementById("defaultCanvas0");
- context = canvas.getContext('2d');
- document.getElementById("snap").addEventListener("click", function() {
- context.drawImage(canvas, 50, 50, 800,800,50,0,720, 1080 );
-});
  
 
   background(255);
@@ -105,8 +100,8 @@ function draw ()
 
   //boton de subir
  // noStroke();
-  fill (0, 50);
-  rect (750, 645, 190, 53);
+ // fill (0, 50);
+ // rect (750, 645, 190, 53);
 
   drawHueBar(); // dibujo la barra de colores
   
