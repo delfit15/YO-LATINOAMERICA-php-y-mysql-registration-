@@ -53,13 +53,13 @@
 </body>  
 
         
-</body>	
 
 </html>       
 
         	
 <?php 
 	//Si un usuario esta previamente logueado, lo saludo y le indico su información
+  // si es el admin, le muestro opciones de administrador.
     }
     
     else { 
@@ -89,7 +89,7 @@
 		?>
      <p> Bienvenidx a Yo, Latinoamerica <strong><?=$_SESSION['usuario_nombre'].' '.$_SESSION['usuario_apellido']?></strong>   </p>
      <p> Accede a la letra de la canción y selecciona el verso que quieras para empezar a dibujar</p>
-		<a href="restringida_letra.php">Empezar</a> 
+		<a href="restringida_letra.php" >Empezar</a> 
    
 
 

@@ -1,16 +1,12 @@
 
 
-
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-#defaultCanvas0{
+canvas{
 overflow: hidden;
 }
 
@@ -47,6 +43,7 @@ body {
 .form-signin {
   width: 100%;
 }
+
 
 .form-signin .btn {
   font-size: 80%;

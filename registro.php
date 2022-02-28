@@ -53,22 +53,56 @@
         } 
     }else { 
 ?> 
+
+<html>
+<link rel="stylesheet" type= "text/css" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <body>
+
     <form action="<?=$_SERVER['PHP_SELF']?>" method="post"> 
-        <label>Usuario:</label><br /> 
-        <input type="text" name="usuario_usuario" maxlength="15" placeholder="Máximo 15 caractéres " title="15 carácteres como máximo sin espacio, sin números" pattern="[a-zA-Z]+" required/><br />
-        <label>Contraseña:</label><br />
-        <input type="password" name="usuario_clave" maxlength="15"  placeholder="Al menos un nº y letra" required /><br /> 
-        <label>Confirmar Contraseña:</label><br />
-        <input type="password" name="usuario_clave_conf" maxlength="15"  placeholder="Al menos un nº y letra" required/><br /> 
-        <label>Nombre:</label><br /> 
-        <input type="text" name="usuario_nombre" maxlength="30" placeholder="Nombre" required/><br /> 
-        <label>Apellido:</label><br /> 
-        <input type="text" name="usuario_apellido" maxlength="30" placeholder="Apellido" required/><br /> 
-        <input type="submit" name="enviar" value="Registrarse" /> 
-        <input type="reset" value="Borrar" /> 
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card card-signin my-5">
+     <div class="card-body">
+    <h5 class="card-title text-center">Registrarse</h5>
+    <form class="form-signin">
+    <div class="form-label-group">
+        <label>Usuario:</label><br><br>
+        <input type="text" name="usuario_usuario" class="form-control" maxlength="15" placeholder="Máximo 15 caractéres " title="15 carácteres como máximo sin espacio, sin números" pattern="[a-zA-Z]+" required autofocus/><br />
+    </div> 
+    <div class="form-label-group">
+        <label>Contraseña:</label><br><br>
+        <input type="password" name="usuario_clave"  class="form-control" maxlength="15"  placeholder="Al menos un nº y letra" required /><br /> 
+    </div>   
+    <div class="form-label-group">
+        <label>Confirmar Contraseña:</label><br><br>
+        <input type="password" name="usuario_clave_conf"  class="form-control" maxlength="15"  placeholder="Al menos un nº y letra" required/><br /> 
+    </div>
+    <div class="form-label-group">   
+        <label>Nombre:</label><br><br> 
+        <input type="text" name="usuario_nombre"  class="form-control" maxlength="30" placeholder="Nombre" required/><br /> 
+    </div>
+    <div class="form-label-group">   
+        <label>Apellido:</label><br><br>
+        <input type="text" name="usuario_apellido"  class="form-control" maxlength="30" placeholder="Apellido" required/><br /> 
+    </div>
+        <input type="submit" name="enviar" value="Registrarse"  class="btn btn-lg btn-primary btn-block text-uppercase" /> 
+      <!--  <input type="reset" value="Borrar" /> -->
+        <hr class="my-4">
+              <div class="text-center">
+         <a href="acceso_main.php">Iniciar Sesión</a>  |  <a href="registro.php">Registrarse</a> | <a href="que_es.php">¿Qué es?</a>
     </form> 
-	
-    <p> <a href="acceso_main.php">Iniciar Sesión</a>  |  <a href="registro.php">Registrarse</a> | <a href="que_es.php">¿Qué es?</a></p>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>  
+</html>
+
 <?php 
     } 
 ?>

@@ -48,13 +48,47 @@ if(isset($_SESSION['usuario_usuario'])) {
 </head>
 
 <header><strong><?=$_SESSION['usuario_nombre'].' '.$_SESSION['usuario_apellido']?></strong> | <a href="logout.php">Salir</a></header>
-<div id='canvasDibujo'> <script src="processing/sketch_paint.js"></script> </div>
-<body>
 
-<button id="snap" name="snap">foto</button>
+<div>
+  <script src="processing/sketch_paint.js"></script>
+  <button id="enviar" name="enviar" method="post">Enviar</button>
+  <button id="ultimo" name="ultimo" method="get">Galeria</button>
+</div>
+
+<script>
+  // seteamos un event listener en el boton de enviar el canvas
+  document.getElementById('enviar').addEventListener('click', function() {
+    
+    // obtenemos el canvas de processing
+    var canvas = document.getElementById('defaultCanvas0');
+    //let c = get(0,0,250,250);
+
+    canvas.toBlob(function (blob) {
+      var req = new XMLHttpRequest();
+      req.open('POST', 'saveDibujo.php');
+
+      req.onload = function () {
+        console.log('subida completa, respuesta del server:', req.response);
+      };
+
+      console.log('subiendo canvas...');
+      req.send(blob);
+    });
+  });
+
+  document.getElementById('ultimo').addEventListener('click', function() {    
+    var req = new XMLHttpRequest();
+    req.open('GET', 'getDibujo.php');
+    req.onload = function () {
+        console.log('se obtuvo el dibujo, respuesta del server:', req.response);
+    };
+    req.send();
+  });
+
+</script>
 
 <?php  //Si no se ha iniciado sesión, lo indicamos...
-// https://stackoverflow.com/questions/44697745/can-anyone-help-me-to-save-canvas-image-to-sql-database-registration-table
+
 }
 	else { 
         echo "Estas accediendo a una pagina restringida, para ver su contenido debes estar registrado.<br />

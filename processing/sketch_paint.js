@@ -32,7 +32,6 @@ function setup ()
 
  createCanvas(980, 720, P2D);
  
-
   background(255);
   colorMode(HSB);
   smooth();

@@ -7,16 +7,14 @@ function preload() {
 }
  
 function setup() {
-  createCanvas(1500, 720);
-
-
+  createCanvas(windowWidth, windowHeight);
 
 }
 
 function draw() { 
   background(255);
   circulo = createGraphics(mapa.width, mapa.height);
-  circulo.ellipse(mouseX,mouseY, 900); // cuando muevo el mouse entre 0 y 400, lleno las letras con la mascara
+  circulo.ellipse(mouseX,mouseY, 900); // cuando muevo el mouse, muevo la mascara 
   ( imgClone = mapa.get() ).mask( circulo.get() );
 
   image(imgClone,0,0);
@@ -48,3 +46,4 @@ p5.Graphics.prototype.remove = function() {
     this.elt.removeEventListener(elt_ev, this._events[elt_ev]);
   }
 };
+

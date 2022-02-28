@@ -1,19 +1,26 @@
 
- document.getElementById('snap').addEventListener('click', function() {
-  context.drawImage(canvas, 0, 0, 400, 300);
-  canvas.toBlob(function (blob) {
-    var formData = new FormData();
-    formData.append('snapshot', blob);
-    formData.append('image-description', 'MFW Im writing an answer on SO');
+// función que convierte el canvas de paint en una imagen y lo sube a la base de datos. 
 
-    var req = new XMLHttpRequest();
-    req.open('POST', 'uploadimage.php');
+document.getElementById('drawing_end').addEventListener('click', function() {
 
-    req.onload = function () {
-      console.log('upload complete, server response:', req.response);
-    };
 
-    console.log('uploading snapshot...');
-    req.send(formData);
-  });
+
 });
+
+
+
+/* var canvas = document.getElementById("defaultCanvas0");
+var dataURL = canvas.toDataURL("image/png");
+document.getElementById('hidden_data').value = dataURL;
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'saveDibujo.php', true);
+
+// le avisamos cuando el dibujo se subió a la base de datos. 
+xhr.upload.onprogress = function(e) {
+    if (e.lengthComputable) {
+        var percentComplete = (e.loaded / e.total) * 100;
+        console.log(percentComplete + '% uploaded');
+        alert('Succesfully uploaded');
+    }
+}; */

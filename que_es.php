@@ -12,7 +12,7 @@
 <t1> ¿Qué es SOY LATINOAMERICA? <t1/>
 
 <p> Es una página web colaborativa que busca la interpretacion de gente de distintos paíces de Latinoamérica sobre la cancion 
-<a href="https://www.youtube.com/watch?v=DkFJE8ZdeG8">Latinoamerica de Calle 13</a>. Todxs podran elegir distintas partes de ella y realizar un 
+<a href="https://www.youtube.com/watch?v=DkFJE8ZdeG8" target="_blank">Latinoamerica de Calle 13</a>. Todxs podran elegir distintas partes de ella y realizar un 
 dibujo sobre lo que les transmita, y finalmente poder visualizar todos los dibujos juntos sobre que es Latinoamerica para cada unx de nosotrxs.
 <p>
 

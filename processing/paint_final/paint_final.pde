@@ -93,11 +93,6 @@ void draw ()
   fill (0);
   rect (210, 645, 50, 50);
 
-  //boton de subir
- // noStroke();
-  fill (0, 50);
-  rect (750, 645, 190, 53);
-
   drawHueBar(); // dibujo la barra de colores
   
 
