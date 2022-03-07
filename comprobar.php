@@ -26,8 +26,9 @@
                 if ($result->num_rows > 0){
                 
                     $row = $result->fetch_assoc();
-                  
+                 
                      $_SESSION['usuario_id'] = $row['id']; // creamos el id, nombre y apellido de la sesion y los asignamos a las rows especificas.
+                     $_SESSION['usuario_usuario'] = $row["usuario"]; 
                      $_SESSION['usuario_nombre'] = $row["nombre"]; 
                      $_SESSION['usuario_apellido'] = $row["apellido"]; 
                     

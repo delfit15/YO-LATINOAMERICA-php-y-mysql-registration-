@@ -40,7 +40,7 @@
             <input type="password" name="usuario_clave" class="form-control" placeholder="clave" required/>
               </div>
 
-              <input type="submit" name="enviar" value="Ingresar"  class="btn btn-lg btn-primary btn-block text-uppercase" >
+              <input type="submit" name="enviar" value="Ingresar"  class="btn btn-lg btn-primary btn-block text-uppercase" />
               <hr class="my-4">
               <div class="text-center">
                   <a class="small"> <p> <a href="acceso_main.php">Iniciar Sesión</a>  |  <a href="registro.php">Registrarse</a> | <a href="que_es.php">¿Qué es?</a></p> </a></div>
@@ -62,7 +62,7 @@
     else { 
 
 
-      if($_SESSION['usuario_usuario']=='admin') 
+      if($_SESSION['usuario_usuario']==='admin') 
 					{
 			
 ?>
@@ -80,9 +80,10 @@
 		
     else
 					{
+           
 ?>
+
 		<?php 
-    
 		//Si está logeado, muestro información restringida solo para los usuarios de nuestro sistema
     include('navbar.html');
 		?>
@@ -111,8 +112,7 @@
   </div>
   </div>
   </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
     </body>
 
 
