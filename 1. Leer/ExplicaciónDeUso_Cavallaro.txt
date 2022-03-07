@@ -7,6 +7,7 @@ Explicación de uso:
 
 1) Abrir archivo crearDB para crear la base de datos (http://localhost/TP-FINAL-2021-CAVALLARO/crearDB.php)
 2) Abrir archivo crear_tabla para crear las tablas y el usuario admin. (http://localhost/TP-FINAL-2021-CAVALLARO/crear_tabla.php)
+... O importar base de datos en phpmyadmin. 
 3) Ya se puede ingresar a la página a partir de http://localhost/TP-FINAL-2021-CAVALLARO/
 4) Registrarse e Iniciar Sesión.
 5) Una vez que iniciaste sesión, podrás empezar a crear tus dibujos. 

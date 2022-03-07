@@ -10,7 +10,7 @@
   $msg_class = "";
 
   if (isset($_POST['enviar'])) {
-    /
+    
       $bio = stripslashes($_POST['bio']);
       $nombre_imagen =  $_FILES["imagen"]["name"];
    

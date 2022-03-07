@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2022 a las 18:06:20
+-- Tiempo de generación: 07-03-2022 a las 05:38:02
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -67,8 +67,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `nombre`, `apellido`, `clave`, `imagen`, `bio`, `reg_date`) VALUES
-(1, 'admin', '', '', '0192023a7bbd73250516f069df18b500', 'imagen_default.jpg', '', '2022-03-04 01:59:33'),
-(5, 'delficav', 'Delfina', 'Cavallaro', 'd41d8cd98f00b204e9800998ecf8427e', 'static-assets-upload13184615027117699797.png', 'Alumna de Artes Multimediales', '2022-03-05 16:57:33');
+(1, 'admin', '', '', '0192023a7bbd73250516f069df18b500', 'imagen_default.jpg', '', '2022-03-07 04:33:50'),
+(2, 'delficav', 'Delfina', 'Cavallaro', '202cb962ac59075b964b07152d234b70', 'static-assets-upload13184615027117699797.png', 'estudiante de multimedia', '2022-03-07 04:35:54'),
+(3, 'valecav', 'Valeria', 'Cavallaro', 'd41d8cd98f00b204e9800998ecf8427e', 'al0schdiybk51.jpeg', 'sin biografía', '2022-03-07 04:37:09');
 
 --
 -- Índices para tablas volcadas
@@ -100,7 +101,7 @@ ALTER TABLE `dibujos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
