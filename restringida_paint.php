@@ -1,81 +1,66 @@
 
 <?php 
 
-/*$sql1 ="SELECT * FROM usuarios WHERE usuario='".$_SESSION['usuario_usuario']."'";
-
-$result=$conn->query($sql1);
-$row=mysqli_fetch_assoc($result);
-
-$index = 0; // suma de dibujos 
-
-$imagenes = array(); // array de dibujos subidos
-
-
-//leo nombre de registros armando una opcion por cada uno
-// voy sumando index al subir los dibujos
-while ($row = $result->fetch_assoc())
-{
-    $imagenes[$index] = $row['dibujos'];
-    $index++;
-} 
-?> 
-<script type='text/javascript'>
-<?php   
-  $js_array = json_encode($imagenes); // muestra imagenes en mi web
-  echo "var javascript_array = ". $js_array . ";\n"; 
-
-*/
-
-//Cuando el usuario está registrado puede acceder a ésta página. 
-
 session_start(); 
+
 include('conexion_db.php'); // incluímos los datos de acceso a la BD 
 // comprobamos que se haya iniciado la sesión, o sea que un usuario autorizado haya iniciado sesión
 if(isset($_SESSION['usuario_usuario'])) {
-
 ?>
-
 </script>
 
-         <!-- Aquí ponemos todo el código HTML de nuestra pagina restringida, desde <html> a </html>--> 
+         <!-- Aquí ponemos todo el código HTML de nuestra pagina restringida, desde <html> a </html>
+              Incluimos el archivo P5.js con el paint--> 
 <!DOCTYPE html>
 <html>
-
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type= "text/css" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <script src="processing/p5.js"></script>
- 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="processing/sketch_paint.js"></script>
 </head>
-
-<header><strong><?=$_SESSION['usuario_nombre'].' '.$_SESSION['usuario_apellido']?></strong> | <a href="logout.php">Salir</a></header>
-
-<div>
-  <script src="processing/sketch_paint.js"></script>
-  <button id="enviar" name="enviar" method="post">Enviar</button>
-  <button id="ultimo" name="ultimo" method="get">Galeria</button>
+<body id="paint-canvas">
+<div class="">
+<a href="acceso_main.php">Volver</a> 
+<!-- botones de enviar y ver en galeria -->
+<button class="btn btn-primary" id="enviar" name="enviar" method="post">Enviar</button>
+<button class="btn btn-primary" id="ultimo" name="ultimo" method="get">Ver en Galeria</button>
 </div>
-
 <script>
+  
   // seteamos un event listener en el boton de enviar el canvas
   document.getElementById('enviar').addEventListener('click', function() {
     
     // obtenemos el canvas de processing
     var canvas = document.getElementById('defaultCanvas0');
-    //let c = get(0,0,250,250);
-
-    canvas.toBlob(function (blob) {
-      var req = new XMLHttpRequest();
-      req.open('POST', 'saveDibujo.php');
-
-      req.onload = function () {
-        console.log('subida completa, respuesta del server:', req.response);
-      };
-
-      console.log('subiendo canvas...');
-      req.send(blob);
+    // recortamos el canvas a la zona del dibujo solamente.
+    var newCanvas = document.createElement('canvas');
+    var desiredWidth= 980; // tamaño en galeria 
+    var desiredHeight=550;
+    newCanvas.width = desiredWidth;
+    newCanvas.height = desiredHeight;
+    newCanvas.getContext('2d').drawImage(canvas,0,60,1960,1100,0,0,desiredWidth, desiredHeight); //dibujamos el canvas recortado
+    var dataURL = newCanvas.toDataURL("image/png"); //lo convertimos en imagen
+    
+    // post del dibujo como imagen 
+    $.ajax({
+      type: "POST",
+      url: "saveDibujo.php",
+      data: { 
+        image: dataURL
+      }
+    }).done(function(msg) {
+      console.log("Subida completa: " + msg);
+      alert("Dibujo Subido!"); 
+    }).fail(function(msg) {
+      console.log("Subida fallida: " + msg);
     });
   });
 
+  // obtenemos el dibujo guardado
   document.getElementById('ultimo').addEventListener('click', function() {    
     var req = new XMLHttpRequest();
     req.open('GET', 'getDibujo.php');
@@ -83,6 +68,8 @@ if(isset($_SESSION['usuario_usuario'])) {
         console.log('se obtuvo el dibujo, respuesta del server:', req.response);
     };
     req.send();
+
+    window.location.replace("getDibujo.php"); // me lleva a la galeria de dibujos
   });
 
 </script>
@@ -95,6 +82,8 @@ if(isset($_SESSION['usuario_usuario'])) {
         <a href='acceso_main.php'>Ingresar</a> / <a href='registro.php'>Regitrate</a>"; 
     } 
     ?>	
+    
 </body>
+
 </html>
 

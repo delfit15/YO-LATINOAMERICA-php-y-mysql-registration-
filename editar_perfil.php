@@ -5,29 +5,33 @@
 
 </head>
 <body>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type= "text/css" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 
 <?php
-    //Cambiando la contraseña:
-    //Con este script, los usuarios podrán cambiar su contraseña.
-    
     
     session_start();
-    include('conexion_db.php'); // inclu�mos los datos de conexi�n a la BD 
+    include('conexion_db.php'); // incluimos los datos de conexión a la BD 
+    include ('navbar.html');
     include_once('procesar_imagenes.php') ;
-    if(isset($_SESSION['usuario_usuario'])) { // comprobamos que la sesi�n est� iniciada
-       
+    if(isset($_SESSION['usuario_usuario'])) { // comprobamos que la sesión está iniciada
+
+// Opciones de editar el perfil.
+//Cambio de contraseña:
+// Si la clave cambiada con la confirmacion no coinciden...
 if(isset($_POST['enviar'])) { 
 
                     if($_POST['usuario_clave'] != $_POST['usuario_clave_conf']) { 
                 echo "Las password ingresadas no coinciden. <a href='javascript:history.back();'>Reintentar</a>";
             }
-            else { 
+            else { //sino cambiamos la contraseña
 
                 $usuario_clave = $_POST["usuario_clave"];
                 $usuario_clave = md5($usuario_clave); // encriptamos la nueva contrasena con md5 
 
-                //$usuario_usuario= $_POST["usuario_usuario"];
+                //si se cambian otros datos, los actualizamos en la bd
+
                 $usuario_nombre=  $_POST["usuario_nombre"];
                 $usuario_apellido=  $_POST["usuario_apellido"]; 
                 $usuario_usuario = $_SESSION["usuario_usuario"];
@@ -38,11 +42,10 @@ if(isset($_POST['enviar'])) {
                 $target_dir = "fotos/";
                 $target_file = $target_dir . basename($nombre_imagen);
 
-             //   move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file);
                 $sql = "UPDATE usuarios SET clave='".$usuario_clave."', nombre='".$usuario_nombre."',apellido='".$usuario_apellido."', imagen= '$nombre_imagen', bio= '$bio' WHERE usuario='".$usuario_usuario."' ";
                 $result = $conn->query($sql);
                 
-                if($result) {
+                if($result) { // si no hay errores, me redirecciona al perfil
                     ?>
                     
                     	<script type="text/javascript">
@@ -53,7 +56,7 @@ if(isset($_POST['enviar'])) {
                     echo "Error: No se pudo actualizar el perfil. <a href='javascript:history.back();'>Reintentar</a>";
                 } 
             } 
-        }else { 
+}else { // si no se cambian los datos, muestro datos actuales
             
             $usuario_nombre=  $_SESSION["usuario_nombre"];
             $usuario_apellido=  $_SESSION["usuario_apellido"]; 
@@ -63,48 +66,62 @@ if(isset($_POST['enviar'])) {
 		    $row=mysqli_fetch_assoc($resulta);
 
             $bio=  $row['bio']; 
+
+    //form de edicion de perfil:
 ?> 
 
-  <h1>Editar Perfil</h1><br/>
+<div class="container">
+    <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                <div class="card-body">
+                <h5 class="card-title text-center">Editar Perfil</h5>
 
-        <form action="<?=$_SERVER['PHP_SELF']?>" method="post" enctype= "multipart/form-data"> 
-
-        <label><h4><b> Subir Foto de Perfil </b></h4></label>
-        <div class="form-group text-center" style="position: relative;" ><span class="img-div">
-        <div class="text-center img-placeholder"  onClick="triggerClick()">
+                <form action="<?=$_SERVER['PHP_SELF']?>" method="post" enctype= "multipart/form-data"> 
+                <label> Subir Foto de Perfil </label>
+                <div class="form-group text-center" style="position: relative;" ><span class="img-div">
+                <div class="text-center img-placeholder"  onClick="triggerClick()">
+                </div>
+                <div class="avatar">
+                    <img class="img-fluid rounded-circle" src= "<?php echo 'fotos/' . $row['imagen']?>" onClick="triggerClick()" id="profileDisplay"  width="200" height="200">
+                </div>
+                    </span>
+                <input type="file" name="imagen" onChange="displayImage(this)" id="imagen" class="form-control" style="display: none;" 
+                value="<?php echo $imagen ?> " >
+                </div>
+                <form class="form-signin">
+                <div class="form-label-group">
+                    <label>Bio</label> <br><br>
+                    <input class="form-control" type="text" name="bio"  value="<?php echo $bio ?>"> <br/> 
+                </div>
+                <div class="form-label-group">
+                <label> Nombre </label> <br><br>
+                <input class="form-control" type="text" name="usuario_nombre" value="<?php echo $usuario_nombre ?>">
+                </div>
+                <div class="form-label-group">
+                    <label>Apellido</label> <br><br>
+                    <input class="form-control" type="text" name="usuario_apellido" value="<?php echo $usuario_apellido ?>">
+                    </div>
+                    <div class="form-label-group">
+                    <label>Nuevo Password:</label><br/><br>
+                    <input  class="form-control" type="password" name="usuario_clave" maxlength="15" /><br /> 
+                    </div>
+                    <div class="form-label-group">
+                    <label>Confirmar Password:</label><br/> <br>
+                    <input  class="form-control"type="password" name="usuario_clave_conf" maxlength="15" /><br /> 
+                    </div>
+                    <div class="form-label-group">
+                    <button type="submit" name="enviar" value="enviar" class= "btn btn-lg btn-primary btn-block text-uppercase" >Guardar Cambios</button>
+                    </div>
+                </form>
+                </form>
+            </div>
         </div>
-              <img src= "<?php echo 'fotos/' . $row['imagen']?>" onClick="triggerClick()" id="profileDisplay">
-            </span>
-           <input type="file" name="imagen" onChange="displayImage(this)" id="imagen" class="form-control" style="display: none;" 
-           value="<?php echo $imagen ?>"
-           >
+      </div>
+    </div>
+  </div>
 
-         </div>
-
-        
-            <label><h4><b>Bio</b></h4></label>
-            <input class="form-control" type="text" name="bio"  value="<?php echo $bio ?>"> <br/> 
-            
-            v
-           <label><h4><b> Nombre </b></h4></label>
-           <input class="form-control" type="text" name="usuario_nombre" value="<?php echo $usuario_nombre ?>">
-
-            <label><h4><b>Apellido</b></h4></label>
-            <input class="form-control" type="text" name="usuario_apellido" value="<?php echo $usuario_apellido ?>">
-
-            <label><h4><b>Nuevo Password:</b></h4></label><br/>
-            <input type="password" name="usuario_clave" maxlength="15" /><br /> 
-
-            <label><h4><b>Confirmar Password:</b></h4></label><br /> 
-            <input type="password" name="usuario_clave_conf" maxlength="15" /><br /> 
-
-
-            <button type="submit" name="enviar" value="enviar" class="btn btn-primary btn-block">Guardar Cambios</button>
-         </form> 
-        
 <?php 
-
-//<input type="submit" name="enviar" value="enviar" />
 
        } 
     }
@@ -114,4 +131,4 @@ if(isset($_POST['enviar'])) {
 ?>
 </body>
 </html>
-<script src="script.js"></script>
+<script src="imagenPerfil.js"></script>

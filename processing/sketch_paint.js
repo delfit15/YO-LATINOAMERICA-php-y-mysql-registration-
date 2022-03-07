@@ -14,7 +14,7 @@ let pencil;
 let pincel;
 let aerosol;
 
-function preload() {
+function preload() { //subimos data
   stroke1=loadImage("data/brush.png");
   stroke2=loadImage("data/aerosol.png");
   lapiz=loadImage("data/pencil.png");
@@ -35,7 +35,7 @@ function setup ()
   background(255);
   colorMode(HSB);
   smooth();
-
+//valores predeterminados
   hue = 0;
   sat = 255;
   bright = 255;
@@ -85,28 +85,22 @@ function draw ()
 
 
   // color blanco (goma) y negro cuadrados
-  //strokeWeight(3);
-  //stroke (0);
+
   noStroke();
   fill (225);
   rect (140, 645, 50, 50);
 
- // strokeWeight(3);
- // stroke (0);
   noStroke();
   fill (0);
   rect (210, 645, 50, 50);
 
-  //boton de subir
- // noStroke();
- // fill (0, 50);
- // rect (750, 645, 190, 53);
+
 
   drawHueBar(); // dibujo la barra de colores
   
 
   //////////// empiezo a dibujar al presionar el mouse
-
+  // dependiendo en que zona aprete, suceden diferentes cosas (dibujar, cambiar color, modo de lapiz, aerosol o pintura, etc.)
   if (mouseIsPressed===true) 
   {
  
@@ -142,14 +136,14 @@ function draw ()
       push();
       fillColor= 255;
       stroke (fillColor);
-      //  line(mouseX, mouseY, pmouseX,pmouseY);
+    
       pop();
       
     } else if (mouseX > 210 && mouseY>645 && mouseX< 210+50 && mouseY<645+50) {//negro
       push();
       fillColor=0;
       stroke (fillColor);
-      // line(mouseX, mouseY, pmouseX,pmouseY);
+    
       pop();
       
     } 
@@ -172,16 +166,12 @@ function draw ()
       pencil=true;
     }
     
-    // al apretar el botón de enviar, se guarda la imagen en carpeta, lista para ser recogida por la basededatos. 
-    // else if (mouseX > 750 && mouseY>645 && mouseX< 750+190 && mouseY<645+53) {
-   
-      //}
       
     }
   
   }
 
-
+// barra de colores
 function drawHueBar() {
   for (let i=0; i<width; i++) {
     let hue = map(i, 0, width, 0, 255);// declare local variable hue  
@@ -194,6 +184,7 @@ function drawHueBar() {
   }
 }
 
+//funcion para dibujar
 function mouseDragged() {
    if (pencil==true) {
      strokeWeight(grosor);
@@ -201,22 +192,20 @@ function mouseDragged() {
     line(mouseX, mouseY,  pmouseX, pmouseY);
   }
 
-  if (pincel==true) {
+  if (pincel==true) { //modo pincel
     pencil=false;
     tint (fillColor, 20);
     push();
     translate (mouseX, mouseY);
-    // rotate (radians(random(0)));
     image(stroke1, 0, 0,  brushsizeX,  brushsizeX2);
     pop();
   }
 
-  if (aerosol==true) {
+  if (aerosol==true) { //modo aerosol
     pencil=false;
     tint (fillColor, 40);
     push();
     translate (mouseX, mouseY);
-    // rotate (radians(random(10)));
     image(stroke2, 0, 0,  brushsizeX,  brushsizeX);
     pop();
  

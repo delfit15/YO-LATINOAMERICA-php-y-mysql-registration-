@@ -1,4 +1,7 @@
-<?php include_once('procesar_imagenes.php') ?>
+
+<?php include_once('procesar_imagenes.php') 
+
+//para actualizar la foto del perfil y la bio?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +12,10 @@
 
   <title> Editar Foto y Bio</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="main.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type= "text/css" href="css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 </head>
 <body>
   
@@ -52,4 +56,4 @@
 </body>
 </html>
 
-<script src="script.js"></script>
+<script src="imagenPerfil.js"></script>

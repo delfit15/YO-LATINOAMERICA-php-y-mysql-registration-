@@ -15,7 +15,7 @@
 <body>
 <?php
 
-
+// seleccionamos un usuario, y elegimos el que queremos eliminar
 $sql = "SELECT * FROM usuarios";
 $result = $conn->query($sql);
 ?>

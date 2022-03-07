@@ -1,0 +1,28 @@
+Alumna: Delfina Cavallaro
+Tp: SOY, LATINOAMERICA
+Galería colaborativa que busca la interpretacion de gente de distintos países de Latinoamérica sobre la canción Latinoamerica de Calle 13.
+Todxs podran realizar un dibujo sobre lo que les transmita, y finalmente poder visualizar todos los dibujos juntos sobre que es Latinoamerica para cada unx de nosotrxs.
+
+Explicación de uso:
+
+1) Abrir archivo crearDB para crear la base de datos (http://localhost/TP-FINAL-2021-CAVALLARO/crearDB.php)
+2) Abrir archivo crear_tabla para crear las tablas y el usuario admin. (http://localhost/TP-FINAL-2021-CAVALLARO/crear_tabla.php)
+3) Ya se puede ingresar a la página a partir de http://localhost/TP-FINAL-2021-CAVALLARO/
+4) Registrarse e Iniciar Sesión.
+5) Una vez que iniciaste sesión, podrás empezar a crear tus dibujos. 
+6) Una vez realizado el dibujo, lo envías y luego puedes verlo en la galeria.
+
+EXTRAS: puedes modificar tu información en tu perfil y si entras como:
+usuario: admin
+contraseña: admin123
+podrás ver la información de los usuarios y eliminarlos si hace falta.
+
+
+¿Cómo se utilizan los datos de lxs usuarixs para crear la obra colaborativa?
+Una vez registrados los usuarios, podrán enviar sus dibujos que serán almacenados en una carpeta en el servidos y enviados a
+la tabla 'dibujos' en la base de datos (se enviarán el dibujo,el orden de subida (id del dibujo), el id del usuario que lo subió (tomado de la tabla de usuarios)
+y el que momento en que lo hizo. 
+Así, obtenemos los dibujos subidos a aquella carpeta por todos los usuarios y los colocamos en una galeria colaborativa.
+
+
+

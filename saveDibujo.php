@@ -1,5 +1,5 @@
 <?php
- //Cuando el usuario está registrado puede acceder a ésta página. 
+
   
     session_start(); 
     include('conexion_db.php'); // incluímos los datos de acceso a la BD 
@@ -7,18 +7,23 @@
   
     $usuario_id = $_SESSION['usuario_id']; 
 
-    // al terminar el dibujo, lo insertamos en la base de datos.
+    // al terminar el dibujo, lo insertamos en un directorio en el servidor
+    define('UPLOAD_DIR', 'dibujos/');
+    $img = $_POST['image'];
+    $img = str_replace('data:image/png;base64,', '', $img);
+    $img = str_replace(' ', '+', $img);
+    $data = base64_decode($img);
+    $file = UPLOAD_DIR . uniqid() . '.png';
+    $success = file_put_contents($file, $data);
 
-    $conn->set_charset('utf8mb4') or sendError($conn->error);
-    $contents = addslashes(file_get_contents('php://input'));
-    $sql = "INSERT INTO dibujos (id_usuario,dibujo,reg_date) VALUES('".$usuario_id."', '".$contents."', NOW())";
+    // insertamos el dibujo en la base de datos
+    $sql = "INSERT INTO dibujos (id_usuario,dibujo,reg_date) VALUES('".$usuario_id."', '".$file."', NOW())";
     $stmt = $conn->prepare($sql) or sendError($conn->error);
-    //$stmt->bind_param('ib', $usuario_id, $contents) or sendError($stmt->error);
 
-    if ($stmt->execute()  === TRUE) {
-        echo "Dibujo subido con éxito";
+    // verificamos si se subió
+    if ($stmt->execute()  === TRUE && $success) {
+        echo "Dibujo subido con éxito: " . $file;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
-    }
- 
+    } 
 ?>
