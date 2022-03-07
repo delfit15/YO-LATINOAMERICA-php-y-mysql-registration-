@@ -12,7 +12,7 @@
     //conectamos y seleccionamos db
     $conn = new mysqli($host_db, $usuario_db, $clave_db, $nombre_db);
     
-    // Check connection
+    // Chequeamos la conexion
     if ($conn->connect_error) {
         die("Conexión Fallida" . $conn->connect_error);
     }

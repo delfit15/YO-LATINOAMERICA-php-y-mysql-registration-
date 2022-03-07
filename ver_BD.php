@@ -6,7 +6,7 @@
     session_start(); 
     include('conexion_db.php'); // incluímos los datos de acceso a la BD 
     // comprobamos que se haya iniciado la sesión, o sea que un usuaior autorizado haya iniciado sesion
-
+	//si es admin..
     if($_SESSION['usuario_usuario']=='admin') 
 		{ 
 ?> 
@@ -15,7 +15,7 @@
 						//Realizo una consulta a todos los registros de usuario
 			$sql = "SELECT * FROM usuarios";
             $result = $conn->query($sql);
-			//creo un formulario que tenga un combo select
+			//seleccionamos usuario del cual queremos ver
 ?>
 
             <div class="container">
@@ -51,7 +51,7 @@
 
 					while($row = $seleccion->fetch_assoc())
 						{
-							//imprimo la informaci�n que quiero
+							//imprimo la informacion que quiero
 							echo "<br>";
 							echo "Numero de Id= " . $row['id'];
 							echo "<br>";
